@@ -1,22 +1,24 @@
 /**
  * ************************************
  *
- * @module  store.js
+ *
+ * ************************************
+ *
+ * @format
+ * @module store.js
  * @author
  * @date
  * @description Redux 'single source of truth'
- *
- * ************************************
  */
+import marketSlice from './slices/marketSlice';
+//Need to import configureStore from @reduxjs/toolkit
+import { configureStore } from '@reduxjs/toolkit';
 
-import { createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './reducers/index';
+// different Store setup to use slices
+// Can have multiple slices in the reducers object if needed
 
-// we are adding composeWithDevTools here to get easy access to the Redux dev tools
-const store = createStore(
-  reducers,
-  composeWithDevTools()
-);
-
-export default store;
+export default configureStore({
+  reducer: {
+    market: marketSlice,
+  },
+});
